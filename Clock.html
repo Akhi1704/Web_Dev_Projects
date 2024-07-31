@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #e0c3fc, #8ec5fc);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            overflow: hidden;
+        }
+        #DigitalClock {
+            color: #00ccff;
+            font-size: 90px;
+            text-shadow: 0 0 10px #00ccff, 0 0 20px #00ccff, 0 0 30px #00ccff, 0 0 40px #00ccff, 0 0 50px #00ccff, 0 0 60px #00ccff, 0 0 70px #00ccff;
+            padding: 20px;
+            border: 5px solid #00ccff;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            letter-spacing: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="DigitalClock"></div>
+    <script>
+        function showTime() {
+            var date = new Date();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            var session = "AM";
+
+            if (h == 0) {
+                h = 12; // 12 hour format
+            } else if (h > 12) {
+                h = h - 12; // 12 hour format
+                session = "PM";
+            } else if (h == 12) {
+                session = "PM";
+            }
+
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            var time = h + ":" + m + ":" + s + " " + session;
+            document.getElementById("DigitalClock").innerHTML = time;
+
+            setTimeout(showTime, 1000);
+        }
+
+        window.onload = function() {
+            showTime();
+        };
+    </script>
+</body>
+</html>
